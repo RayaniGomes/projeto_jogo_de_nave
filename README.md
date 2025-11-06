@@ -6,7 +6,7 @@
 
 ## 📌 Sobre o projeto
 
-Blaster Run é um jogo de nave construído com JavaScript e a biblioteca p5.js. O objetivo é sobreviver às ondas de inimigos, coletar power-ups e subir no ranking de pontos. O projeto foi criado para ser leve, fácil de entender e divertido de jogar diretamente no navegador.
+Blaster Run é um jogo de nave com objetivo de sobreviver às ondas de inimigos, coletar power-ups e subir no ranking de pontos. O projeto foi criado para ser leve, fácil de entender e divertido de jogar diretamente no navegador.
 
 > Desenvolvido para a disciplina de Programação Orientada a Objeto (POO)
 
