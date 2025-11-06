@@ -1,25 +1,20 @@
-// Classe Bala herda de BalaBase (Herança)
 class Bala extends BalaBase {
-  // Atributo privado
   #tipoArma;
 
   constructor(x, y, tipo = "jogador", tipoArma = "basica") {
     // Configurações baseadas no tipo e arma
     let config = Bala.#getConfigBala(tipo, tipoArma);
 
-    // Chama construtor da classe pai (super) - Polimorfismo
     super(x, y, config.raio, config.velocidade, config.direcao);
 
-    // Inicializa atributo privado
     this.#tipoArma = tipoArma;
 
-    // Atributos públicos
     this.tipo = tipo;
     this.cor = config.cor;
     this.corBrilho = config.corBrilho;
   }
 
-  // Método estático privado para configuração
+  // Método para configuração
   static #getConfigBala(tipo, tipoArma) {
     const configs = {
       jogador: {
@@ -60,19 +55,16 @@ class Bala extends BalaBase {
     return tipoConfig[tipoArma] || tipoConfig.basica;
   }
 
-  // Getter para tipo de arma
   get tipoArma() {
     return this.#tipoArma;
   }
 
-  // Setter para tipo de arma
   set tipoArma(valor) {
     if (["basica", "rapida", "dupla"].includes(valor)) {
       this.#tipoArma = valor;
     }
   }
 
-  // Override do método show (Polimorfismo)
   show() {
     if (this.ativa) {
       fill(this.cor);
@@ -84,23 +76,17 @@ class Bala extends BalaBase {
     }
   }
 
-  // Override do método automove (Polimorfismo)
   automove() {
-    // Chama método da classe pai usando super
     super.automove();
   }
 
-  // Override do método getHitbox (Polimorfismo)
   getHitbox() {
-    // Usa super para obter hitbox base
     return super.getHitbox();
   }
 }
 
-// Classe BalaInimiga herda de BalaBase (Herança)
 class BalaInimiga extends BalaBase {
   constructor(x, y) {
-    // Chama construtor da classe pai (super)
     super(x, y, 3, 6, 1); // raio, velocidade, direcao
 
     // Atributos específicos

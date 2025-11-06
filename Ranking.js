@@ -1,4 +1,3 @@
-// Sistema de Ranking
 class Ranking {
   static #melhorPontuacao = 0;
 
@@ -17,7 +16,7 @@ class Ranking {
     if (pontos > atual) {
       this.#melhorPontuacao = pontos;
       localStorage.setItem("melhorPontuacao", pontos.toString());
-      return true; // Nova recorde
+      return true; 
     }
     return false;
   }

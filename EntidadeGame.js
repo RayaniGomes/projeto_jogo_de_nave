@@ -1,4 +1,3 @@
-// Classe base para entidades do jogo
 class EntidadeGame {
   constructor(x, y, largura, altura, cor) {
     this.x = x;

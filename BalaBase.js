@@ -1,4 +1,3 @@
-// Classe base para balas
 class BalaBase {
   constructor(x, y, raio, velocidade, direcao) {
     this.x = x;

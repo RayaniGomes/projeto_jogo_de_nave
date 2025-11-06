@@ -1,7 +1,6 @@
-// Classe Inimigo
 class Inimigo extends EntidadeGame {
   constructor(x, y, tipo = "basico") {
-    // Configurações baseadas no tipo
+    // Configurações baseadas no tipo de inimigo
     let config = Inimigo.#getConfigTipo(tipo);
 
     super(x, y, config.largura, config.altura, config.cor);
@@ -22,8 +21,8 @@ class Inimigo extends EntidadeGame {
   static #getConfigTipo(tipo) {
     const configs = {
       basico: {
-        largura: 25,
-        altura: 25,
+        largura: 35,
+        altura: 35,
         velocidade: 1.5,
         cor: color(150, 50, 200),
         vida: 1,
@@ -31,8 +30,8 @@ class Inimigo extends EntidadeGame {
         pontos: 10,
       },
       rapido: {
-        largura: 20,
-        altura: 20,
+        largura: 30,
+        altura: 30,
         velocidade: 2.5,
         cor: color(50, 150, 255),
         vida: 1,
@@ -40,8 +39,8 @@ class Inimigo extends EntidadeGame {
         pontos: 15,
       },
       forte: {
-        largura: 35,
-        altura: 35,
+        largura: 45,
+        altura: 45,
         velocidade: 1,
         cor: color(255, 100, 50),
         vida: 2,

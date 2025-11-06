@@ -1,40 +1,31 @@
-// Classe Nave herda de EntidadeGame (Herança)
 class Nave extends EntidadeGame {
-  // Atributos privados (#)
   #vidaMaxima;
   #invencivel;
   #tempoInvencibilidade;
 
   constructor(x, y, cor) {
-    // Chama construtor da classe pai (super) - Polimorfismo
-    super(x, y, 30, 20, cor);
+    super(x, y, 50, 40, cor);
 
-    // Inicializa atributos privados
     this.#vidaMaxima = Config.getVidasMaximas();
     this.#invencivel = false;
     this.#tempoInvencibilidade = 0;
 
-    // Atributos públicos
     this.velocidade = Config.getVelocidadePadrao();
     this._vida = 3; // Protected (convenção)
   }
 
-  // Getter para vida
   get vida() {
     return this._vida;
   }
 
-  // Setter para vida com limite máximo
   set vida(valor) {
     this._vida = Config.limitar(valor, 0, this.#vidaMaxima);
   }
 
-  // Getter para invencibilidade
   get invencivel() {
     return this.#invencivel;
   }
 
-  // Setter para invencibilidade
   set invencivel(valor) {
     this.#invencivel = valor;
     if (valor) {
@@ -42,14 +33,12 @@ class Nave extends EntidadeGame {
     }
   }
 
-  // Override do método show (Polimorfismo)
   show() {
     // Pisca quando está invencível
     if (this.#invencivel && floor(millis() / 200) % 2 === 0) {
       return;
     }
 
-    // Chama método da classe base se existisse
     fill(this.cor);
 
     // Desenha a nave como um triângulo apontando para a esquerda
@@ -64,12 +53,12 @@ class Nave extends EntidadeGame {
 
     // Detalhes da nave
     fill(255);
-    circle(this.x - 8, this.y, 6);
+    circle(this.x - 8, this.y, 8);
 
     // Asas
     fill(this.cor);
-    rect(this.x - 5, this.y - this.altura / 2, 10, 5);
-    rect(this.x - 5, this.y + this.altura / 2, 10, 5);
+    rect(this.x - 5, this.y - this.altura / 2, 20, 7);
+    rect(this.x - 5, this.y + this.altura / 2, 20, 7);
   }
 
   moverParaCima() {
@@ -92,7 +81,7 @@ class Nave extends EntidadeGame {
     };
   }
 
-  // Adiciona vida (usado por power-up)
+  // Adiciona vida 
   adicionarVida() {
     if (this.vida < this.#vidaMaxima) {
       this.vida++;
@@ -116,7 +105,7 @@ class Nave extends EntidadeGame {
     }
   }
 
-  // Override do método getHitbox (Polimorfismo)
+  // Override do método getHitbox 
   getHitbox() {
     // Usa super para obter hitbox base e adiciona propriedades específicas
     let hitbox = super.getHitbox();

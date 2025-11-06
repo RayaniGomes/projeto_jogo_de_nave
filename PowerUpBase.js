@@ -1,4 +1,3 @@
-// Classe base para power-ups do jogo
 class PowerUpBase {
   constructor(x, y, tamanho, cor) {
     this.x = x;
@@ -26,11 +25,6 @@ class PowerUpBase {
       y: this.y,
       raio: this.tamanho / 2
     };
-  }
-
-  // Ação base ao coletar
-  coletar() {
-    // Implementação nas classes filhas
   }
 }
 

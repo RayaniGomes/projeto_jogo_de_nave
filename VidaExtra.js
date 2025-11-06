@@ -1,4 +1,3 @@
-// Classe VidaExtra 
 class VidaExtra extends PowerUpBase {
   #pulso;
   #coletada;

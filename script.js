@@ -1,4 +1,3 @@
-// Variáveis globais
 var fundoTela;
 var player;
 var municao = [];
@@ -16,18 +15,10 @@ var tipoArmaAtual = "basica";
 var intervaloEntreTiros = 150;
 var telaInicio;
 
-// Calcula o bônus de velocidade para inimigos com base na pontuação
-// A cada 500 pontos, retorna +3, com limite máximo de 12
-function getBonusVelocidadeInimigos() {
-  let passos = Math.floor(pontuacao / 500);
-  let bonus = passos * 3;
-  return Math.min(bonus, 12);
-}
-
 function setup() {
-  createCanvas(800, 400);
-
-  player = new Nave(750, 200, color(255, 50, 50));
+  createCanvas(1200, 600);
+  
+  player = new Nave(1180, 300, color(255, 50, 50));
   municao = [];
   balasInimigas = [];
   inimigos = [];
@@ -36,12 +27,12 @@ function setup() {
   powerUps = [];
   pontuacao = 0;
 
-  // Inicializa fundo estrelado (sempre usado)
+  // Inicializa fundo estrelado 
   fundoEstrelado = new FundoEstrelado(100);
 
   // Inicializa tela inicial
   telaInicio = new TelaInicio();
-  // Inicializa tela de game over (implementada em TelaGameOver.js)
+  // Inicializa tela de game over 
   telaGameOver = new TelaGameOver();
 
   criarInimigos();
@@ -82,6 +73,7 @@ function draw() {
     desenharVidas();
     desenharMelhorPontuacao();
     desenharArmaAtual();
+    desenharControlesInferiores();
   }
 
   // Elementos sempre desenhados
@@ -173,6 +165,14 @@ function mousePressed() {
       }
     }
   }
+}
+
+// Calcula o bônus de velocidade para inimigos com base na pontuação
+// A cada 500 pontos, retorna +3, com limite máximo de 12
+function getBonusVelocidadeInimigos() {
+  let passos = Math.floor(pontuacao / 500);
+  let bonus = passos * 3;
+  return Math.min(bonus, 12);
 }
 
 function atirar() {
@@ -464,8 +464,7 @@ function atualizarPowerUps() {
   for (let i = powerUps.length - 1; i >= 0; i--) {
     let powerUp = powerUps[i];
     if (powerUp.ativa) {
-      // Passa a posição da nave para o power-up
-      // VidaExtra usa esses parâmetros, outros power-ups ignoram
+      // Passa a posição da nave para o power-up e VidaExtra
       if (powerUp instanceof VidaExtra) {
         powerUp.mover(player.xNave, player.yNave);
       } else {
@@ -530,7 +529,7 @@ function desenharCoracao(x, y, tamanho) {
   endShape(CLOSE);
 }
 
-// -------------------- Troca de arma --------------------
+// Troca de arma 
 const _armasDisponiveis = ["basica", "rapida", "dupla"];
 
 function trocarArma(nova) {
@@ -572,12 +571,51 @@ function desenharArmaAtual() {
   fill(220);
   textSize(14);
   textAlign(LEFT, CENTER);
-  text("Arma (Q):", x + 8, y + h / 2);
+  text("Arma:", x + 8, y + h / 2);
 
   // Nome e pequeno ícone de bala
   fill(200, 200, 255);
   textAlign(RIGHT, CENTER);
   let nome = tipoArmaAtual.toUpperCase();
   text(nome, x + w - 10, y + h / 2);
+  pop();
+}
+
+// Painel discreto no canto inferior com informações de controle
+function desenharControlesInferiores() {
+  push();
+  rectMode(CORNER);
+  noStroke();
+
+  // Box semi-transparente
+  let pad = 10;
+  let w = 325;
+  let h = 35;
+  let x = width / 2 - w / 2; 
+  let y = height - h - 20;
+
+  fill(10, 10, 20, 160);
+  stroke(120, 120, 200, 160);
+  strokeWeight(1);
+  rect(x, y, w, h, 6);
+
+  // Texto dos controles
+  noStroke();
+  fill(220);
+  textSize(13);
+  textAlign(LEFT, CENTER);
+
+  let linha1 = "↑ ↓:  Mover";
+  let linha2 = "SPACE:  Atirar";
+  let linha3 = "Q:  Trocar arma";
+
+  // Desenha ícones/labels em linha
+  let sx = x + pad + 6;
+  let sy = y + h / 2;
+
+  // Monta um texto compacto com separadores
+  let texto = `${linha1}   •   ${linha2}   •   ${linha3}`;
+  text(texto, sx, sy);
+
   pop();
 }

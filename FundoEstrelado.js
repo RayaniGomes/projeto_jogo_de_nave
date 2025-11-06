@@ -1,4 +1,3 @@
-// Sistema de fundo estrelado dinâmico
 class FundoEstrelado {
   constructor(numEstrelas = 100) {
     this.estrelas = [];

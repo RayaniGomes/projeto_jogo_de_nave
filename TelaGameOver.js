@@ -1,18 +1,17 @@
-// TelaGameOver.js
-// Contém toda a lógica da tela de Game Over: render, detecção de clique no botão
-// e reinício do jogo. Este arquivo assume acesso a variáveis e funções globais
-// definidas em script.js (por exemplo: pontuacao, player, criarInimigos, Ranking).
-
 function TelaGameOver() {
-  // Desenha a tela de Game Over
   this.desenhar = function () {
-    fill(0, 0, 0, 200);
-    rect(400, 200, width, height);
+    fill(0, 0, 0, 180);
+    rect(600, 300, width, height);
 
-    fill(255, 50, 50);
-    textSize(40);
+    // Texto GAME OVER pulsante
+    let pulse = sin(frameCount * 0.12);
+    let baseSize = 40;
+    let tamanhoTexto = baseSize + pulse * 8; 
+    let alpha = map(pulse, -1, 1, 160, 255);
+    fill(255, 50, 50, alpha);
+    textSize(tamanhoTexto);
     textAlign(CENTER, CENTER);
-    text("GAME OVER", width / 2, height / 2 - 80);
+    text("GAME OVER", width / 2, height / 2 - 100);
 
     fill(255);
     textSize(24);
@@ -38,7 +37,7 @@ function TelaGameOver() {
     );
 
     // Botão de reiniciar
-    let botaoY = height / 2 + 80;
+    let botaoY = height / 2 + 100;
     let mouseSobreBotaoReiniciar = this.clicouNoBotaoReiniciar(mouseX, mouseY);
     let corBotaoReiniciar = mouseSobreBotaoReiniciar
       ? color(255, 150, 150)
@@ -47,12 +46,17 @@ function TelaGameOver() {
     // Box do botão
     fill(20, 10, 20, 200);
     stroke(corBotaoReiniciar, 255, 255, 200);
-    strokeWeight(mouseSobreBotaoReiniciar ? 3 : 2);
-    rect(width / 2, botaoY, 450, 40, 5);
+    strokeWeight(mouseSobreBotaoReiniciar ? 2 : 1);
+    rect(width / 2, botaoY, 350, 40, 5);
 
     fill(corBotaoReiniciar);
     textSize(mouseSobreBotaoReiniciar ? 20 : 18);
-    text("CLIQUE OU PRESSIONE R PARA REINICIAR", width / 2, botaoY);
+    text("REINICIAR O JOGO", width / 2, botaoY);
+
+    fill(250);
+    noStroke();
+    textSize(12);
+    text("Clique ou pressione R para reiniciar", width / 2, botaoY + 35);
   };
 
   // Retorna true se (mx,my) estiver sobre o botão de reiniciar
@@ -72,7 +76,7 @@ function TelaGameOver() {
 
   // Reinicia o jogo
   this.reiniciarJogo = function () {
-    player = new Nave(750, 200, color(255, 50, 50));
+    player = new Nave(1180, 300, color(255, 50, 50));
     municao = [];
     balasInimigas = [];
     inimigos = [];
@@ -96,4 +100,3 @@ function TelaGameOver() {
     ultimoSpawnPowerUp = millis();
   };
 }
-
