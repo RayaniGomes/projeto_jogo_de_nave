@@ -28,7 +28,7 @@ Blaster Run é um jogo de nave com objetivo de sobreviver às ondas de inimigos,
 
 ## 🚀 Deploy
 
-O projeto utiliza o deploy da [Vercel](https://vercel.com), para visualizar o mesmo, por favor [clique aqui!](https://blaster-run.vercel.app/)
+O projeto utiliza o deploy da **GitHub Pages**, para visualizar o mesmo, por favor [clique aqui!](https://rayanigomes.github.io/BlasterRun/)
 
 ## 📝 Licença
 
